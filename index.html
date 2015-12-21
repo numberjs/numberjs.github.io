@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+  <head>
+    <link id="theme" rel="stylesheet" href="css/atelier-cave-dark.css">
+    <link rel="stylesheet" href="http://punchcard.dragonwrench.com/css/jquery-ui.css">
+    <style>
+      @font-face {
+        font-family: robotech;
+        src: url('/fonts/robotech.ttf');
+      }
+      body {
+        font-family: robotech;
+        background: #ccc;
+        font-size: small;
+      }
+      code {
+        /* width: 580px; */
+        width: 50%;
+        margin: 0 auto;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        border-radius: 7px;
+      }
+      #logo {
+        font-size: 5pt;
+        padding: 3px;
+        background: #333;
+        color: #2ee;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+      }
+      #logo img {
+        padding: 40px 0px 0px 0px;
+      }
+      .source a {
+        font-size: medium;
+        color: #2ee;
+        text-decoration: none;
+      }
+      #clock {
+        padding: 3px 0px 0px 0px;
+      }
+      #clock pre code {
+        font-size: xx-small;
+      }
+      #styles {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+      }
+
+      #styles select {
+        font-family: robotech;
+        padding:3px;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(102, 102, 102)), color-stop(0.6, rgb(51, 51, 51)), to(rgb(102, 102, 102)));
+        background-image: -moz-linear-gradient(19% 75% 90deg,#5C5C5C, #6E6E6E, #3B3B3B 100%);
+        color:#2ee;
+        border:none;
+        outline:none;
+        display: inline-block;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        cursor:pointer;
+      }
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+
+}
+
+/* Portrait */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: landscape) {
+
+}
+
+
+
+    </style>
+  </head>
+  <body>
+<!--
+    <pre> 
+      <code class='JavaScript'>
+  //SnoozeJS example
+
+  (new Snooze({ 
+     polling_interval:  (5).seconds(),   
+     session_interval: (30).minutes(),     
+     snooze_interval:  (30).seconds(),      
+  })).are_you_there();
+      </code>
+    </pre>
+-->
+    <pre> 
+      <code class='JavaScript'>
+      </code>
+    </pre>
+
+    <pre> 
+      <code class='JavaScript'>
+
+//Enumerators
+
+  (10).times(function(i) { 
+    console.log(i);
+  });
+
+/* 
+  0
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+*/
+  
+(10).map(function(e) { return e;});
+
+/*
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+      </code>
+    </pre>
+      
+    <pre> 
+      <code class='JavaScript'>
+//Secure Random Number Generators
+
+(10).random();
+
+/* generates random number between 0..10 */
+
+      </code>
+    </pre>
+
+    <pre>
+      <code class='JavaScript'>
+//Metaprogramming <i>send</i> method
+
+(30).send('days').send('from_now').send('to_human')
+      </code>
+    </pre>
+
+    <pre>
+      <code class='JavaScript'>
+  //Clock under logo
+
+  ($_ = function(){ 
+    $('#clock').html((0).seconds().from_now().to_human()) 
+  })(); 
+  setInterval($_, (1).second());
+      </code>
+    </pre>
+    <pre>
+      <code class='JavaScript'>
+  //Random code theme changer
+
+  var change_theme = function(theme) { 
+    $('#theme').attr('href', ['/css/', theme, '.css'].join('')); 
+  }
+  setInterval(function() { 
+    change_theme(themes[themes.length.random()]);
+  }, (10).seconds());
+      </code>
+    </pre>
+    <pre>
+      <code class='JavaScript'>
+//Code used to update realtime output within comments in top example
+
+(demo = function() {
+      //cascade example methods using <i>send</i> and <i>reduce</i>
+  var build_demo = function(n, methods) { 
+        return { 
+          method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join(''),
+          output: methods.reduce(function(n, method) { return n.send(method)}, 30) 
+        }
+      }, 
+
+      //keep comments vertically aligned and easy to read 
+
+      pad = function(n, s) {
+        return (n - s.length).map(function() { return ' ' }).join('');
+      },
+    
+      //will the two helpers above iterate through basic methods and cascade them with the 
+      //human friendly method <i> to_human </i>
+
+      recompute_output_times_in_comments = ["", "from_now", "ago"].map(function(time_method) {
+        return ["milliseconds", "seconds", "minutes", "hours", "days"].map(function(duration) { 
+           return (time_method.length == 0)? build_demo(30, [duration]) : build_demo(30, [duration, time_method, 'to_human']);
+        });
+      }), 
+      //build markup after flatting array generated above
+      markup = [].concat.apply([], recompute_output_times_in_comments).map(function(example, i) {
+        return [example.method, pad(41, example.method), " // &#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
+      }).join("\n");
+  
+  //apply markup and reload syntax highlighting
+
+  $($('pre code')[0]).html(["//Legible Date/Time calculations\n\n", markup].join(''));
+  hljs.highlightBlock($('pre code')[0]);
+
+})();
+setInterval(demo, (1).second()); //reload example every second
+      </code>
+    </pre>
+    <div id="logo"> 
+      <pre>
+                       _               _
+ _ __  _   _ _ __ ___ | |__   ___ _ __(_)___
+| '_ \| | | | '_ ` _ \| '_ \ / _ \ '__| / __|
+| | | | |_| | | | | | | |_) |  __/ |  | \__ \
+|_| |_|\__,_|_| |_| |_|_.__/ \___|_| _/ |___/
+                                    |__/
+      </pre>
+      <div id="clock"></div>
+      <div class="source"> <a href = "/js/number.js">source</a>&nbsp;1.66&nbsp;kb</div>
+      <div class="source"> <a href = "/js/number.min.js">source compressed</a>&nbsp;0.97&nbsp;kb</div>
+      <img src='/images/fib.png' width='220'/>
+    </div>
+    <div id="styles"></div>
+  </body>
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+  <script src="js/number.js"></script>
+  <script src="js/main.js"></script>
+</html>
