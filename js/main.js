@@ -56,7 +56,7 @@
 
     var build_demo = function(n, methods) { 
           return { 
-            method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join('') + ':',
+            method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join('') + ';',
             output: (methods.reduce(function(n, method) { return n.send(method)}, n) + "").replace(/(\d{2}:\d{2}:\d{2})/, "<em>$1</em>")
           }
         }, 
