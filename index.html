@@ -205,15 +205,25 @@
       //human friendly method <i> to_human </i>
 
       recompute_output_times_in_comments = ["", "from_now", "ago"].map(function(time_method) {
-        return ["milliseconds", "seconds", "minutes", "hours", "days"].map(function(duration) { 
-           return (time_method.length == 0)? build_demo(30, [duration]) : build_demo(30, [duration, time_method, 'to_human']);
+        return ["milliseconds", 
+                "seconds", 
+                "minutes", 
+                "hours", 
+                "days"].map(function(duration) { 
+           return (time_method.length == 0)? 
+             build_demo(30, [duration]) : 
+             build_demo(30, [duration, time_method, 'to_human']);
         });
       }), 
 
       //build markup after flatting array generated above
 
       markup = [].concat.apply([], recompute_output_times_in_comments).map(function(example, i) {
-        return [example.method, pad(41, example.method), " // &#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
+        return [example.method, 
+                pad(41, example.method), 
+                " // &#8594; ", 
+                example.output, 
+                (((i+1)%5)==0)? "\n": ""].join("");
       }).join("\n");
   
   //apply markup and reload syntax highlighting
