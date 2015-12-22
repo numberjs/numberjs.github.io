@@ -56,8 +56,8 @@
 
     var build_demo = function(n, methods) { 
           return { 
-            method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join(''),
-            output: methods.reduce(function(n, method) { return n.send(method)}, n) 
+            method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join('') + ':',
+            output: (methods.reduce(function(n, method) { return n.send(method)}, n) + "").replace(/(\d{2}:\d{2}:\d{2})/, "<em>$1</em>")
           }
         }, 
 
@@ -70,7 +70,7 @@
         //with the two helpers above iterate through basic methods and cascade them with the 
         //human friendly method <i> to_human </i>
 
-        recompute_output_times_in_comments = ["", "from_now", "ago"].map(function(time_method) {
+        recompute_timestamps = ["", "from_now", "ago"].map(function(time_method) {
           return ["milliseconds", "seconds", "minutes", "hours", "days"].map(function(duration) { 
              //return (time_method.length == 0)? build_demo((30).random(), [duration]) : build_demo((30).random(), [duration, time_method, 'to_human']);
              return (time_method.length == 0)? build_demo(30, [duration]) : build_demo(30, [duration, time_method, 'to_human']);
@@ -79,14 +79,15 @@
 
         //build markup after flatting array generated above
 
-        markup = [].concat.apply([], recompute_output_times_in_comments).map(function(example, i) {
-          return [example.method, pad(41, example.method), " // &#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
+        markup = [].concat.apply([], recompute_timestamps).map(function(example, i) {
+          return [example.method, pad(42, example.method), "//&#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
         }).join("\n");
     
     //apply markup and reload syntax highlighting
 
     $($('pre code')[0]).html(["//Legible Date/Time calculations\n\n", markup].join(''));
     hljs.highlightBlock($('pre code')[0]);
+    //$('code em').css('color', '#2ee');
 
   })();
   setInterval(demo, (1).second()); //reload example every second
