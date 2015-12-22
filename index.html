@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="ISO-8859-1">>
     <link id="theme" rel="stylesheet" href="css/atelier-cave-dark.css">
     <link rel="stylesheet" href="/css/jquery-ui.css">
     <link rel="shortcut icon" type='image/gif' href="/favicon.ico" />
@@ -184,7 +185,9 @@
 //Code used to update realtime output within comments in top example
 
 (demo = function() {
+
       //cascade example methods using <i>send</i> and <i>reduce</i>
+
   var build_demo = function(n, methods) { 
         return { 
           method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join(''),
@@ -206,7 +209,9 @@
            return (time_method.length == 0)? build_demo(30, [duration]) : build_demo(30, [duration, time_method, 'to_human']);
         });
       }), 
+
       //build markup after flatting array generated above
+
       markup = [].concat.apply([], recompute_output_times_in_comments).map(function(example, i) {
         return [example.method, pad(41, example.method), " // &#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
       }).join("\n");
@@ -230,7 +235,7 @@ setInterval(demo, (1).second()); //reload example every second
                                     |__/
       </pre>
       <div id="clock"></div>
-      <div class="source"> <a href = "/js/number.js">source</a>&nbsp;1.66&nbsp;kb</div>
+      <div class="source"> <a href = "/js/number.js">source</a>&nbsp;1.41&nbsp;kb</div>
       <div class="source"> <a href = "/js/number.min.js">source compressed</a>&nbsp;0.97&nbsp;kb</div>
       <img src='/images/fib.png' width='220'/>
     </div>

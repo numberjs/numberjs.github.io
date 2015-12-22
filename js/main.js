@@ -1,3 +1,4 @@
+(function() {
   var stylelist = function() {
     var id = 'current_theme';
     var themes = [
@@ -50,7 +51,9 @@
 
    
   (demo = function() {
+
         //cascade example methods using send & reduce
+
     var build_demo = function(n, methods) { 
           return { 
             method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join(''),
@@ -73,7 +76,9 @@
              return (time_method.length == 0)? build_demo(30, [duration]) : build_demo(30, [duration, time_method, 'to_human']);
           });
         }), 
+
         //build markup after flatting array generated above
+
         markup = [].concat.apply([], recompute_output_times_in_comments).map(function(example, i) {
           return [example.method, pad(41, example.method), " // &#8594; ", example.output, (((i+1)%5)==0)? "\n": ""].join("");
         }).join("\n");
@@ -87,3 +92,4 @@
   setInterval(demo, (1).second()); //reload example every second
 
   hljs.initHighlightingOnLoad();
+})();
