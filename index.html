@@ -187,7 +187,7 @@
   var build_demo = function(n, methods) { 
         return { 
           method: [ "(", n, ").",methods.map(function(m) {return m + "()";}).join(".")].join(''),
-          output: methods.reduce(function(n, method) { return n.send(method)}, 30) 
+          output: methods.reduce(function(n, method) { return n.send(method)}, n) 
         }
       }, 
 
