@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="ISO-8859-1"></meta>
-    <link id="theme" rel="stylesheet" href="css/atelier-cave-dark.css" >
+    <link id="theme" rel="stylesheet" href="css/agate.css" >
     <link rel="stylesheet" href="/css/jquery-ui.css">
     <link rel="shortcut icon" type='image/gif' href="/favicon.ico">
 <a href="https://github.com/numberjs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -24,7 +24,13 @@
         -webkit-border-radius: 7px;
         border-radius: 7px;
       }
-
+      .shadow { /*class that should be added if the code theme is light ... really makes the code pop out */
+        -moz-box-shadow: 4px 3px 7px 1px #888;
+        -webkit-box-shadow: 4px 3px 7px 1px #888;
+        box-shadow: 4px 3px 7px 1px #888;
+        filter: progid:DXImageTransform.Microsoft.Shadow(strength = 4, direction = 123.75, color = '#888');
+        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(strength = 4, Direction = 123.75, Color = '#888')";
+      }
       #logo {
         font-size: 5pt;
         padding: 3px;
@@ -201,7 +207,7 @@
     
       //with the two helpers above, 
       //iterate through date methods and cascade them with the 
-      //date calcuclations: <i> from_now </i> / <i> ago </i> 
+      //date calculations: <i> from_now </i> / <i> ago </i> 
       //finished with the 
       //readable date method <i> to_human </i>
 
