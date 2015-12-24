@@ -50,6 +50,7 @@
   });
 
    
+/*
   (demo = function() {
 
         //cascade example methods using send & reduce
@@ -93,4 +94,90 @@
   setInterval(demo, (1).second()); //reload example every second
 
   hljs.initHighlightingOnLoad();
+*/
+(demo = function() {
+
+      //cascade example methods using <i>send</i> and <i>reduce</i>
+
+  var build_demo = function(n, methods) { 
+        return { 
+          method: ["(", n, ").",
+                    methods.map(function(m) {
+                      return m + "()";
+                    }).join(".")
+                  ].join('') + ";",
+          output: (methods.reduce(function(n, method) { 
+            return n.send(method)
+          }, n) + "").replace(/(\d{2}:\d{2}:\d{2})/, "<em>$1</em>")
+        }
+      }, 
+
+      //keep comments vertically aligned and easy to read 
+      //emulates printf "%42s" since the maximum cascaded method
+      //is 42 characters in length
+
+      pad = function(n, s) {
+        return (n - s.length).map(function() { 
+          return ' ' 
+        }).join('');
+      },
+    
+      //with the two helpers above, 
+      //iterate through date methods and cascade them with the 
+      //date calcuclations: <i> from_now </i> / <i> ago </i> 
+      //finished with the 
+      //readable date method <i> to_human </i>
+
+      recompute_timestamps = ["", 
+        "from_now", 
+        "ago"].map(function(time_method) {
+        return ["milliseconds", 
+                "seconds", 
+                "minutes", 
+                "hours", 
+                "days"].map(function(duration) { 
+                   return (time_method.length == 0)? 
+                     build_demo(30, [duration]) : 
+                     build_demo(30, [duration, time_method, 'to_human']);
+                });
+      }), 
+
+      //build markup after flatting array generated above
+
+      code_demo = [].
+                  concat.
+                  apply([], recompute_timestamps).
+                  map(function(example, i) {
+                    return [example.method, 
+                            pad(42, example.method), 
+                            "//&#8594; ", 
+                            example.output, 
+                            (((i+1)%5)==0)? "\n": ""].join("");
+                  }).join("\n");
+  
+  //apply <em>code demo</em> and reload syntax highlighting
+
+  $($('#live_example')[0]).html(
+    ["//Legible Date/Time calculations\n\n", 
+     code_demo].join('')
+  );
+  hljs.highlightBlock($('#live_example')[0]);
+
+})();
+setInterval(demo, (1).second()); //reload demo every second
+hljs.initHighlightingOnLoad();
+
+$('#release').on('click', function() {
+  var escapeHTML =function escapeHtml(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+      return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;' }[s];
+    });
+  }
+  $.get('http://numberjs.dragonwrench.com/js/number.js', function(src) {
+    $('body').prepend(['<pre><code class="JavaScript">', escapeHTML(src), '</code></pre>'].join(''))
+    hljs.highlightBlock($('pre code')[0]);
+  });
+});
+
+
 })();

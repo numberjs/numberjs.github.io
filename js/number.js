@@ -28,11 +28,11 @@ Number.prototype.millisecond = Number.prototype.milliseconds = function() {
 };
 Number.prototype.ago = function() {
   var d = new Date();
-  return (d.getTime() - this); //1000.0;
+  return (d.getTime() - this); 
 };
 Number.prototype.from_now = function() {
   var d = new Date();
-  return (d.getTime() + this); //1000.0;
+  return (d.getTime() + this); 
 };
 //assuming it's a date x number of milliseconds
 Number.prototype.to_human = function() {

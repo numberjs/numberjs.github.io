@@ -80,7 +80,8 @@
   </head>
   <body>
     <pre> 
-      <code class='JavaScript'>
+      <code id='live_example' class='JavaScript'>
+        <!--will be overriden by example written below -->
       </code>
     </pre>
 
@@ -135,6 +136,18 @@
 
     <pre>
       <code class='JavaScript'>
+//nonrecursive fibonacci generation
+
+(10).map().reduce(function(f, i) { 
+  f[i] = (i&lt;2)? 1 : f[i-1] + f[i-2]; 
+  return f;
+}, [])  
+
+//&#8594; [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+      </code>
+    </pre>
+    <pre>
+      <code class='JavaScript'>
   //Clock under logo
 
   ($_ = function(){ 
@@ -165,7 +178,7 @@
 
   var build_demo = function(n, methods) { 
         return { 
-          method: [ "(", n, ").",
+          method: ["(", n, ").",
                     methods.map(function(m) {
                       return m + "()";
                     }).join(".")
@@ -241,8 +254,8 @@ setInterval(demo, (1).second()); //reload demo every second
                                     |__/
       </pre>
       <div id="clock"></div>
-      <div class="source"> <a href = "/js/number.js">source</a>&nbsp;1.41&nbsp;kb</div>
-      <div class="source"> <a href = "/js/number.min.js">source compressed</a>&nbsp;0.97&nbsp;kb</div>
+      <div id="release" class="source"> <a href = "/js/number.js" download="number.js" >source</a>&nbsp;1.39&nbsp;kb</div>
+      <div class="source"> <a href = "/js/number.min.js">source compressed</a>&nbsp;0.96&nbsp;kb</div>
       <img src='/images/fib.png' width='220'/>
     </div>
     <div id="styles"></div>
