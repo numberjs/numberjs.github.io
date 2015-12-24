@@ -130,7 +130,7 @@
         return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;' }[s];
       });
     }
-    $.get('http://numberjs.dragonwrench.com/js/number.js', function(src) {
+    $.get('/js/number.js', function(src) {
       $('body').prepend(['<pre><code class="JavaScript">', escapeHTML(src), '</code></pre>'].join(''))
       hljs.highlightBlock($('pre code')[0]);
       $($('pre code')[0]).addClass('shadow');
