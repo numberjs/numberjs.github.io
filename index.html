@@ -4,8 +4,10 @@
     <meta charset="ISO-8859-1"></meta>
     <link id="theme" rel="stylesheet" href="css/agate.css" >
     <link rel="stylesheet" href="/css/jquery-ui.css">
+<!--
     <link rel="shortcut icon" type='image/gif' href="/favicon.ico">
 <a href="https://github.com/numberjs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+-->
     <style>
       @font-face {
         font-family: robotech;
@@ -18,8 +20,9 @@
       }
       code {
         /* width: 580px; */
-        width: 50%;
-        margin: 0 auto;
+        width: 70%;
+        /* margin: 0 auto; */
+        margin-left: 20%;
         -moz-border-radius: 7px;
         -webkit-border-radius: 7px;
         border-radius: 7px;
@@ -44,7 +47,7 @@
         border-radius:3px;
       }
       #logo img {
-        padding: 40px 0px 0px 0px;
+        padding: 20px 0px 0px 0px;
       }
       .source a {
         font-size: medium;
@@ -58,9 +61,13 @@
         font-size: xx-small;
       }
       #styles {
+       margin-top: 20px;
+/*
+       text-align: center;
         position: fixed;
         bottom: 10px;
         right: 10px;
+*/
       }
 
       #styles select {
@@ -262,14 +269,18 @@ setInterval(demo, (1).second()); //reload demo every second
       <div id="clock"></div>
       <div id="release" class="source"> <a href = "/js/number.js" download="number.js" >source</a>&nbsp;1.39&nbsp;kb</div>
       <div class="source"> <a href = "/js/number.min.js">source compressed</a>&nbsp;0.96&nbsp;kb</div>
+      <div id="styles"></div>
       <img src='/images/fib.png' width='220'/>
     </div>
-    <div id="styles"></div>
   </body>
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<!--
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+-->
+  <script src="js/highlight.min.js"></script>
   <script src="js/number.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/object-watch.js"></script>
   <script src="js/google.js"></script>
 </html>
